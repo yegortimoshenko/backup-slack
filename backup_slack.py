@@ -73,14 +73,11 @@ def download_history(channel_info, history, path):
 
 
 def download_public_channels(slack, outdir):
-    """Download the message history for the public channels where this user
-    is logged in.
-    """
+    """Download the message history for the public channels."""
     for channel in slack.channels():
-        if channel['is_member']:
-            history = slack.channel_history(channel=channel)
-            path = os.path.join(outdir, '%s.json' % channel['name'])
-            download_history(channel_info=channel, history=history, path=path)
+        history = slack.channel_history(channel=channel)
+        path = os.path.join(outdir, '%s.json' % channel['name'])
+        download_history(channel_info=channel, history=history, path=path)
 
 
 def download_usernames(slack, path):
